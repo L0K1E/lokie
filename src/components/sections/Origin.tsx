@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 // each word is a span the scroll timeline brightens in sequence (see HorizontalScroll)
 const STORY: { t: string; accent?: string }[] = [
   { t: 'As a kid, computers felt a little ' },
@@ -39,20 +41,31 @@ export default function Origin() {
         Origin<span className="text-accent-yellow">.</span>
       </h2>
 
-      <p
-        data-scrub
-        className="max-w-4xl font-body text-2xl font-medium leading-relaxed text-ink md:text-[2rem] md:leading-[1.55]"
-      >
-        {TOKENS.map((token, i) =>
-          'space' in token ? (
-            ' '
-          ) : (
-            <span key={i} data-word className={token.accent}>
-              {token.w}
-            </span>
-          )
-        )}
-      </p>
+      <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-[4vw]">
+        <p
+          data-scrub
+          className="font-body text-lg font-medium leading-relaxed text-ink md:max-w-xl md:text-xl md:leading-[1.6] lg:max-w-2xl"
+        >
+          {TOKENS.map((token, i) =>
+            'space' in token ? (
+              ' '
+            ) : (
+              <span key={i} data-word className={token.accent}>
+                {token.w}
+              </span>
+            )
+          )}
+        </p>
+
+        <Image
+          data-avatar
+          src="/avatar-origin.png"
+          alt="Illustration of a kid writing his first HTML on a CRT computer"
+          width={1402}
+          height={1122}
+          className="w-full max-w-md md:w-[36vw] md:max-w-[560px]"
+        />
+      </div>
     </div>
   );
 }

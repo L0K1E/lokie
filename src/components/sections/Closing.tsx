@@ -1,50 +1,47 @@
-import AvatarPlaceholder from '@/components/placeholders/AvatarPlaceholder';
+import Image from 'next/image';
 
-// the resume card is the download button itself — a native <a download>, so it works even without JS
+// the resume overlay is the download link itself — a native <a download>, so it works even without JS
 export default function Closing() {
   return (
-    <div className="flex min-h-[100svh] w-full flex-col items-center justify-center px-[7vw] py-24 text-center">
+    <div className="flex min-h-[100svh] w-full flex-col items-center justify-center px-[7vw] py-20 text-center">
       <h2
         data-reveal
-        className="font-display text-5xl font-extrabold leading-[1.05] tracking-wordmark sm:text-7xl md:text-8xl"
+        className="font-display text-5xl font-extrabold leading-[1.05] tracking-wordmark sm:text-6xl md:text-7xl"
       >
         Let&apos;s build
         <br />
         something<span className="text-accent-blue">.</span>
       </h2>
 
-      <div
-        data-reveal
-        className="mt-14 flex flex-col items-center gap-8 sm:flex-row sm:items-end sm:gap-12"
-      >
-        <AvatarPlaceholder
-          pose="Pose 5 · Glasses + finger-gun"
-          className="h-64 w-52 shrink-0"
+      {/* square render, so capping width against svh keeps the whole scene in one viewport */}
+      <div data-reveal className="relative mt-8 w-[min(88vw,52svh)]">
+        <Image
+          src="/avatar-closing.png"
+          alt="Illustration of Logesh winking and pointing at his resume"
+          width={1254}
+          height={1254}
+          className="h-auto w-full"
         />
-
+        {/* positioned over the sheet he holds in the render; percentages track the artwork */}
         <a
           href="/resume.pdf"
           download
           aria-label="Download resume (PDF)"
-          className="group relative block w-60 -rotate-3 rounded-xl border border-ink/10 bg-paper p-6 text-left shadow-2xl transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-0"
+          className="group absolute left-[50.5%] top-[38%] flex h-[44%] w-[34%] -rotate-[4deg] flex-col justify-between rounded-sm bg-paper p-[3.5%] text-left shadow-lg ring-1 ring-ink/15 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0"
         >
-          {/* mock CV layout so the card reads as a resume */}
-          <div className="h-3 w-28 rounded bg-ink/80" />
-          <div className="mt-2 h-2 w-20 rounded bg-accent-blue" />
-          <div className="mt-5 space-y-2">
-            <div className="h-1.5 w-full rounded bg-ink/15" />
-            <div className="h-1.5 w-full rounded bg-ink/15" />
-            <div className="h-1.5 w-4/5 rounded bg-ink/15" />
+          <div>
+            <div className="h-[0.45rem] w-3/5 rounded bg-ink/80" />
+            <div className="mt-[6%] h-[0.35rem] w-2/5 rounded bg-accent-blue" />
+            <div className="mt-[10%] space-y-[6%]">
+              <div className="h-[0.3rem] w-full rounded bg-ink/15" />
+              <div className="h-[0.3rem] w-full rounded bg-ink/15" />
+              <div className="h-[0.3rem] w-4/5 rounded bg-ink/15" />
+            </div>
           </div>
-          <div className="mt-4 space-y-2">
-            <div className="h-1.5 w-1/2 rounded bg-ink/25" />
-            <div className="h-1.5 w-full rounded bg-ink/15" />
-            <div className="h-1.5 w-5/6 rounded bg-ink/15" />
-          </div>
-          <div className="mt-6 flex items-center justify-center gap-2 rounded-lg bg-ink px-4 py-2.5 font-body text-xs font-semibold uppercase tracking-wide text-paper transition-colors duration-300 group-hover:bg-accent-blue">
+          <div className="flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-ink px-1.5 py-[5%] font-body text-[0.6rem] font-semibold text-paper transition-colors duration-300 group-hover:bg-accent-blue sm:text-xs">
             <svg
-              width="14"
-              height="14"
+              width="12"
+              height="12"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -52,10 +49,12 @@ export default function Closing() {
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
+              className="shrink-0"
             >
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" />
             </svg>
-            Download resume
+            <span className="sm:hidden">Resume</span>
+            <span className="hidden sm:inline">Download resume</span>
           </div>
         </a>
       </div>

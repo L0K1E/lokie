@@ -1,6 +1,5 @@
+import Image from 'next/image';
 import Terminal from '@/components/Terminal';
-import AvatarPlaceholder from '@/components/placeholders/AvatarPlaceholder';
-import CatPlaceholder from '@/components/placeholders/CatPlaceholder';
 
 export default function Hero() {
   return (
@@ -41,14 +40,17 @@ export default function Hero() {
         </p>
       </div>
 
-      <AvatarPlaceholder
-        pose="Pose 1 · Welcome"
-        className="absolute bottom-0 left-1/2 z-10 h-[44vh] w-[200px] -translate-x-1/2"
+      <Image
+        src="/avatar-hero.png"
+        alt="Illustration of Logesh with arms crossed"
+        width={1254}
+        height={1254}
+        priority
+        className="absolute bottom-[8vh] left-1/2 z-10 h-[52vh] w-auto -translate-x-1/2"
       />
 
-      {/* terminal docked half off-screen, cat asleep on top */}
+      {/* terminal docked half off-screen */}
       <div className="absolute bottom-0 left-1/2 z-30 w-[92%] max-w-xl -translate-x-1/2 translate-y-1/2">
-        <CatPlaceholder className="absolute -top-7 right-8 z-40 h-12 w-16 -rotate-6" />
         <Terminal />
       </div>
     </div>
