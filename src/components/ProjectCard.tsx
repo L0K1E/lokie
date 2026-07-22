@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-// static cover at rest, richer preview on hover; media area is a stand-in until real clips exist
+// app-window chrome matching the hero terminal; static cover at rest, richer preview on
+// hover, media area is a stand-in until real clips exist
 export default function ProjectCard({
   id,
   title,
@@ -21,8 +22,14 @@ export default function ProjectCard({
       id={id}
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-paper transition-shadow duration-300 hover:shadow-xl"
+      className="group flex h-full flex-col overflow-hidden rounded-xl bg-ink shadow-lg ring-1 ring-ink/10 transition-shadow duration-300 hover:shadow-2xl"
     >
+      <div className="flex items-center gap-2 bg-white/[0.06] px-4 py-3">
+        <span className="h-3 w-3 rounded-full bg-accent-orange" />
+        <span className="h-3 w-3 rounded-full bg-accent-yellow" />
+        <span className="h-3 w-3 rounded-full bg-accent-green" />
+        <span className="ml-3 truncate font-mono text-xs text-paper/50">{id} — app</span>
+      </div>
       <div className="relative aspect-video overflow-hidden bg-ink">
         <div
           className={`absolute inset-0 transition-opacity duration-300 ${accentBg} ${
@@ -50,7 +57,7 @@ export default function ProjectCard({
           )}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col bg-paper p-5">
         <h3 className="font-display text-xl font-bold">{title}</h3>
         <p className="mt-2 font-body text-sm leading-relaxed text-ink/70">{blurb}</p>
       </div>
