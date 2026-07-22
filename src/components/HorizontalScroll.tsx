@@ -34,6 +34,7 @@ export default function HorizontalScroll() {
 
       const originTitle = gsap.utils.toArray<HTMLElement>('#origin [data-reveal]');
       const originWords = gsap.utils.toArray<HTMLElement>('#origin [data-word]');
+      const originAvatar = gsap.utils.toArray<HTMLElement>('#origin [data-avatar]');
       const arsenalReveals = gsap.utils.toArray<HTMLElement>('#arsenal [data-reveal]');
       const worksReveals = gsap.utils.toArray<HTMLElement>('#works [data-reveal]');
       const closingReveals = gsap.utils.toArray<HTMLElement>('#closing [data-reveal]');
@@ -69,6 +70,14 @@ export default function HorizontalScroll() {
           { opacity: 0.15 },
           { opacity: 1, duration: 0.15, stagger: fill(originWords.length, 0.15, DWELL_STORY) },
           arrive.origin
+        );
+      }
+      if (originAvatar.length) {
+        tl.fromTo(
+          originAvatar,
+          { opacity: 0, x: 48 },
+          { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' },
+          arrive.origin + 0.2
         );
       }
       if (arsenalReveals.length) {
@@ -133,6 +142,41 @@ export default function HorizontalScroll() {
 
       // matchMedia reverts the GSAP work itself; the DOM listener needs manual cleanup
       return () => track.removeEventListener('click', onTrackClick);
+    });
+
+    // vertical stack gets its own lighter animations: fade-ups per element plus the word read-along
+    mm.add('(max-width: 767.98px) and (prefers-reduced-motion: no-preference)', () => {
+      const reveals = gsap.utils.toArray<HTMLElement>(
+        '.hscroll-panel [data-reveal], .hscroll-panel [data-avatar]'
+      );
+      reveals.forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 24,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        });
+      });
+
+      const words = gsap.utils.toArray<HTMLElement>('#origin [data-word]');
+      if (words.length) {
+        gsap.fromTo(
+          words,
+          { opacity: 0.15 },
+          {
+            opacity: 1,
+            stagger: 0.02,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '#origin [data-scrub]',
+              start: 'top 75%',
+              end: 'bottom 55%',
+              scrub: true,
+            },
+          }
+        );
+      }
     });
 
     return () => mm.revert();
