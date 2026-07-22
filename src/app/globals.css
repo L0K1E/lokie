@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply overflow-x-hidden bg-background-hero text-ink font-body text-body;
+  }
+}
+
+/* Panels stack vertically by default (mobile, reduced motion, no JS); the desktop filmstrip is layered on below. */
+.hscroll-track {
+  display: flex;
+  flex-direction: column;
+}
+
+.hscroll-panel {
+  width: 100%;
+  /* min-height so a stacked panel can grow to fit its content; the filmstrip re-fixes it to 100vh */
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-shrink: 0;
+}
+
+.wave-desktop {
+  display: none;
+}
+.wave-mobile {
+  display: block;
+}
+
+/* must match the gsap.matchMedia() query in HorizontalScroll.tsx */
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .wave-desktop {
+    display: block;
+  }
+  .wave-mobile {
+    display: none;
+  }
+
+  .hscroll {
+    height: 100vh;
+    overflow: hidden;
+  }
+  .hscroll-track {
+    flex-direction: row;
+    width: max-content; /* the five fixed-width panels define the track width */
+    height: 100vh;
+  }
+  .hscroll-panel {
+    width: 100vw;
+    height: 100vh;
+  }
+}
