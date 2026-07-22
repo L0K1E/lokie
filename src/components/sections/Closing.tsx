@@ -4,15 +4,9 @@ import AvatarPlaceholder from '@/components/placeholders/AvatarPlaceholder';
 export default function Closing() {
   return (
     <div className="flex min-h-[100svh] w-full flex-col items-center justify-center px-[7vw] py-24 text-center">
-      <p
-        data-reveal
-        className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-ink/40"
-      >
-        05 / 05 — The end
-      </p>
       <h2
         data-reveal
-        className="mt-5 font-display text-5xl font-extrabold leading-[1.05] tracking-wordmark sm:text-7xl md:text-8xl"
+        className="font-display text-5xl font-extrabold leading-[1.05] tracking-wordmark sm:text-7xl md:text-8xl"
       >
         Let&apos;s build
         <br />
