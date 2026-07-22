@@ -42,7 +42,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between px-6 py-5">
+    <header className="nav-scrim fixed left-0 top-0 z-50 flex w-full items-center justify-between px-6 py-4">
       <span
         aria-hidden={!showWordmark}
         className={`font-display text-2xl font-extrabold tracking-wordmark transition-opacity duration-500 ${

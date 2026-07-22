@@ -49,6 +49,13 @@
   display: block;
 }
 
+/* translucent bar while sections stack under the fixed nav; the filmstrip clears it below */
+.nav-scrim {
+  background: theme('colors.paper / 70%');
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
 /* must match the gsap.matchMedia() query in HorizontalScroll.tsx */
 @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
   .wave-desktop {
@@ -56,6 +63,12 @@
   }
   .wave-mobile {
     display: none;
+  }
+
+  .nav-scrim {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .hscroll {
