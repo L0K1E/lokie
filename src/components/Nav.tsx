@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 // placeholder hrefs until the real profile links go in
 const socials = [
   {
@@ -18,9 +22,33 @@ const socials = [
 ];
 
 export default function Nav() {
+  // the hero has its own big wordmark, so the nav one stays hidden until the hero is scrolled past
+  const [showWordmark, setShowWordmark] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById('hero');
+    if (!hero) {
+      setShowWordmark(true);
+      return;
+    }
+    // ratio check instead of isIntersecting: the scroll engine can park the hero
+    // exactly at the viewport edge, which still counts as intersecting at ratio 0
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowWordmark(entry.intersectionRatio < 0.01),
+      { threshold: [0, 0.01] }
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between px-6 py-5">
-      <span className="font-display text-2xl font-extrabold tracking-wordmark">
+      <span
+        aria-hidden={!showWordmark}
+        className={`font-display text-2xl font-extrabold tracking-wordmark transition-opacity duration-500 ${
+          showWordmark ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         Lokie
       </span>
       <nav className="flex items-center gap-5">
