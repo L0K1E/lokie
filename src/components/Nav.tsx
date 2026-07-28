@@ -42,14 +42,21 @@ export default function Nav() {
 
   return (
     <header className="nav-scrim fixed left-0 top-0 z-50 flex w-full items-center justify-between px-6 py-4">
-      <span
+      <a
+        href="#hero"
         aria-hidden={!showWordmark}
+        tabIndex={showWordmark ? 0 : -1}
+        onClick={(e) => {
+          e.preventDefault();
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        }}
         className={`font-display text-2xl font-extrabold tracking-wordmark transition-opacity duration-500 ${
-          showWordmark ? 'opacity-100' : 'opacity-0'
+          showWordmark ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
       >
         Lokie
-      </span>
+      </a>
       <nav className="flex items-center gap-5">
         {socials.map(({ label, href, path }) => (
           <a
