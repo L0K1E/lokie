@@ -18,7 +18,7 @@ const script: {
   {
     cmd: 'ls',
     out: [
-      { text: 'visual-prompt-builder', href: '#visual-prompt-builder' },
+      { text: 'uru', href: '#uru' },
       { text: 'roast-a-website', href: '#roast-a-website' },
       { text: 'rythemix', href: '#rythemix' },
     ],

@@ -3,8 +3,8 @@ import ProjectCard from '@/components/ProjectCard';
 // card ids match the hero terminal's ls targets so a name click jumps here
 const projects = [
   {
-    id: 'visual-prompt-builder',
-    title: 'Visual Prompt Builder',
+    id: 'uru',
+    title: 'Uru',
     blurb:
       'A tap-based tool for building photo and design AI prompts — no prompt-engineering skill required, just point and tap.',
     image: '/visual-prompt-builder.png',
