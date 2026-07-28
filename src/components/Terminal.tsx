@@ -25,6 +25,18 @@ const script: {
   },
 ];
 
+// paced so the sequence can actually be read rather than skimmed
+const TIMING = {
+  keyMin: 85,
+  keyJitter: 55,
+  beforeEnter: 420,
+  beforeOutput: 300,
+  betweenOutput: 320,
+  afterClear: 700,
+  betweenSteps: 1100,
+  start: 700,
+};
+
 // resting state after the script; reduced-motion users see this immediately
 const finalLines: Line[] = [
   { kind: 'cmd', text: 'cd Projects' },
@@ -52,41 +64,51 @@ export default function Terminal() {
     const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
     async function run() {
-      await sleep(500);
+      await sleep(TIMING.start);
       for (const step of script) {
         for (let i = 1; i <= step.cmd.length; i++) {
           if (cancelled) return;
           setTyping(step.cmd.slice(0, i));
-          await sleep(50 + Math.random() * 45); // slight jitter reads more human
+          await sleep(TIMING.keyMin + Math.random() * TIMING.keyJitter); // jitter reads more human
         }
         if (cancelled) return;
-        await sleep(260);
+        await sleep(TIMING.beforeEnter);
         setLines((prev) => [...prev, { kind: 'cmd', text: step.cmd }]);
         setTyping('');
 
         if (step.clearAfter) {
-          await sleep(320);
+          await sleep(TIMING.afterClear);
           if (cancelled) return;
           setLines([]);
-          await sleep(260);
+          await sleep(TIMING.beforeOutput);
           continue;
         }
         if (step.out) {
-          await sleep(140);
+          await sleep(TIMING.beforeOutput);
           for (const o of step.out) {
             if (cancelled) return;
             setLines((prev) => [...prev, { kind: 'out', text: o.text, href: o.href }]);
-            await sleep(130);
+            await sleep(TIMING.betweenOutput);
           }
         }
-        await sleep(520);
+        await sleep(TIMING.betweenSteps);
       }
       if (!cancelled) setDone(true);
     }
 
-    run();
+    // hold off until the page has finished loading so the typing is not competing for the main thread
+    if (document.readyState === 'complete') {
+      run();
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const onLoad = () => run();
+    window.addEventListener('load', onLoad, { once: true });
     return () => {
       cancelled = true;
+      window.removeEventListener('load', onLoad);
     };
   }, []);
 
