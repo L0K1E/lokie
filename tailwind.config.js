@@ -25,14 +25,9 @@ module.exports = {
           '0%, 50%': { opacity: '1' },
           '50.01%, 100%': { opacity: '0' },
         },
-        shimmer: {
-          '0%': { transform: 'translateX(-120%) skewX(-12deg)' },
-          '100%': { transform: 'translateX(360%) skewX(-12deg)' },
-        },
       },
       animation: {
         blink: 'blink 1s steps(1) infinite',
-        shimmer: 'shimmer 1.6s linear infinite',
       },
     },
   },

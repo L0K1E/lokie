@@ -7,6 +7,7 @@ const projects = [
     title: 'Visual Prompt Builder',
     blurb:
       'A tap-based tool for building photo and design AI prompts — no prompt-engineering skill required, just point and tap.',
+    image: '/visual-prompt-builder.png',
     accentBg: 'bg-accent-blue',
   },
   {
@@ -14,6 +15,7 @@ const projects = [
     title: 'Roast-a-Website',
     blurb:
       'A website audit tool that tells you the truth about your site — with jokes instead of a dry report.',
+    image: '/roast-my-website.png',
     accentBg: 'bg-accent-orange',
   },
   {
@@ -21,13 +23,14 @@ const projects = [
     title: 'Rythemix',
     blurb:
       'A drum-kit beat-maker in the browser — pick instruments, drop beats on a grid, and loop your own track.',
+    image: '/rhythemix.png',
     accentBg: 'bg-accent-green',
   },
 ];
 
 export default function Works() {
   return (
-    <div className="flex min-h-[100svh] w-full flex-col justify-center px-[7vw] py-24">
+    <div className="relative z-30 flex min-h-[100svh] w-full flex-col justify-center px-[7vw] py-24">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-4" data-reveal>
         <h2 className="font-display text-7xl font-extrabold tracking-wordmark md:text-8xl">
           Works<span className="text-accent-orange">.</span>
