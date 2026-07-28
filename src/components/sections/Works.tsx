@@ -35,9 +35,10 @@ export default function Works() {
         <h2 className="font-display text-7xl font-extrabold tracking-wordmark md:text-8xl">
           Works<span className="text-accent-orange">.</span>
         </h2>
-        {/* placeholder until the real GitHub profile URL goes in */}
         <a
-          href="#"
+          href="https://github.com/L0K1E"
+          target="_blank"
+          rel="noopener noreferrer"
           className="group inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 font-body text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-paper"
         >
           See more on GitHub
