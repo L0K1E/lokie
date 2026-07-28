@@ -8,6 +8,8 @@ const projects = [
     blurb:
       'A tap-based tool for building photo and design AI prompts — no prompt-engineering skill required, just point and tap.',
     image: '/visual-prompt-builder.png',
+    url: 'https://uru-theta.vercel.app',
+    code: 'https://github.com/L0K1E/Uru',
     accentBg: 'bg-accent-blue',
   },
   {
@@ -16,6 +18,8 @@ const projects = [
     blurb:
       'A website audit tool that tells you the truth about your site — with jokes instead of a dry report.',
     image: '/roast-my-website.png',
+    url: 'https://roast-a-website.vercel.app',
+    code: 'https://github.com/L0K1E/Roast-a-website',
     accentBg: 'bg-accent-orange',
   },
   {
@@ -24,6 +28,8 @@ const projects = [
     blurb:
       'A drum-kit beat-maker in the browser — pick instruments, drop beats on a grid, and loop your own track.',
     image: '/rhythemix.png',
+    url: 'https://rhythmix-eight.vercel.app',
+    code: 'https://github.com/L0K1E/Rhythmix',
     accentBg: 'bg-accent-green',
   },
 ];
