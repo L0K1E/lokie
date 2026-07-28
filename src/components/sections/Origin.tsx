@@ -2,17 +2,17 @@ import Image from 'next/image';
 
 // each word is a span the scroll timeline brightens in sequence (see HorizontalScroll)
 const STORY: { t: string; accent?: string }[] = [
-  { t: 'As a kid, computers felt a little ' },
+  { t: 'Ever since I was a kid I have been fascinated by computers. They felt a little ' },
   { t: 'magical', accent: 'text-accent-yellow' },
-  { t: ' — I was endlessly curious how they worked. Our first one arrived in third grade: a bulky early-2000s ' },
+  { t: ' — I was endlessly curious about how they worked. Third grade. We got our first one, an early-2000s desktop with a bulky ' },
   { t: 'CRT', accent: 'text-accent-orange' },
-  { t: ". Out of curiosity I opened my brother's 12th-grade computer science textbook and worked the exercises myself. That was " },
+  { t: " monitor, and like most kids I spent hours playing games on it. Then one day I picked up my brother's 12th-grade computer science textbook and tried the exercises myself. That was my introduction to " },
   { t: 'HTML and CSS', accent: 'text-accent-blue' },
-  { t: '. ' },
+  { t: '. Later I did the same with ' },
   { t: 'C', accent: 'text-accent-green' },
-  { t: ' came next, the same way — experimenting, breaking things, figuring it out. No classroom, no curriculum. ' },
-  { t: 'I still learn that way today', accent: 'text-accent-blue' },
-  { t: '.' },
+  { t: ' — experimenting, making mistakes, figuring it out. I never waited for a classroom. ' },
+  { t: 'That habit of teaching myself stuck', accent: 'text-accent-blue' },
+  { t: ', and it still shapes how I pick up anything new.' },
 ];
 
 type Token = { w: string; accent?: string } | { space: true };
@@ -33,7 +33,7 @@ const TOKENS = tokenize(STORY);
 
 export default function Origin() {
   return (
-    <div className="flex min-h-[100svh] w-full flex-col justify-center px-[7vw] py-24">
+    <div className="relative z-30 flex min-h-[100svh] w-full flex-col justify-center px-[7vw] py-24">
       <h2
         data-reveal
         className="mb-10 font-display text-7xl font-extrabold tracking-wordmark md:text-8xl"
