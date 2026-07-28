@@ -17,9 +17,9 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: 'Logesh Waran — Full-stack Engineer',
+  title: 'Logesh Waran - Software Engineer',
   description:
-    'Portfolio of Logesh Waran (Lokie) — a full-stack engineer with a design eye.',
+    'Portfolio of Logesh Waran (Lokie) - a software engineer who actually cares what it looks like.',
 };
 
 export default function RootLayout({

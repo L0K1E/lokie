@@ -1,44 +1,22 @@
 import Image from 'next/image';
 import Terminal from '@/components/Terminal';
+import Logomark from '@/components/Logomark';
 
 export default function Hero() {
   return (
-    <div className="relative h-[100svh] w-full overflow-hidden">
-      {/* decorative backdrop */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 400 400"
-        fill="none"
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[74vh] w-[74vh] -translate-x-1/2 -translate-y-[44%]"
-      >
-        <circle cx="176" cy="212" r="118" className="fill-accent-yellow" />
-        <path
-          d="M250 96 A142 142 0 0 1 250 328"
-          className="stroke-accent-blue"
-          strokeWidth="30"
-          strokeLinecap="round"
-        />
-        <path
-          d="M256 140 A100 100 0 0 1 256 284"
-          className="stroke-accent-green"
-          strokeWidth="26"
-          strokeLinecap="round"
-        />
-        <circle cx="66" cy="120" r="19" className="fill-accent-orange" />
-        <circle cx="48" cy="182" r="13" className="fill-accent-orange" />
-      </svg>
-
-      <div className="absolute left-[7vw] top-[13%] z-20 max-w-3xl">
-        <h1 className="font-display text-6xl font-extrabold leading-[0.92] tracking-wordmark sm:text-7xl md:text-8xl">
+    <div className="relative z-30 h-[100svh] w-full overflow-hidden">
+      <div className="absolute left-[7vw] top-[11%] z-20 max-w-3xl md:top-1/2 md:-translate-y-1/2">
+        <h1 className="font-display text-6xl font-extrabold leading-[0.92] tracking-wordmark sm:text-7xl md:text-8xl lg:text-9xl">
           Lokie
           <span className="text-accent-yellow">.</span>
         </h1>
-        {/* tagline is still draft copy */}
         <p className="mt-5 max-w-md font-body text-base text-ink/60 sm:text-lg">
-          Full-stack engineer with a <span className="text-accent-blue">design eye</span>{' '}
-          most developers skip.
+          Software engineer who <span className="text-accent-blue">actually cares</span>{' '}
+          what it looks like.
         </p>
       </div>
+
+      <Logomark className="absolute right-[7vw] top-[11%] z-10 w-[24vw] max-w-[120px] md:top-[26%] md:w-[15vw] md:max-w-[280px]" />
 
       <Image
         src="/avatar-hero.png"
@@ -46,8 +24,33 @@ export default function Hero() {
         width={1254}
         height={1254}
         priority
-        className="absolute bottom-[8vh] left-1/2 z-10 h-[52vh] w-auto -translate-x-1/2"
+        className="absolute bottom-[26vh] left-1/2 z-10 h-[38vh] w-auto -translate-x-1/2 md:bottom-[24vh] md:h-[52vh]"
       />
+
+      {/* not a control, just an affordance for the sideways scroll */}
+      <div
+        data-scroll-hint
+        aria-hidden="true"
+        className="absolute left-[7vw] top-[27%] z-20 flex items-center gap-3 font-body text-lg text-ink/70 md:left-auto md:right-[5vw] md:top-auto md:bottom-[12%] md:items-start md:gap-6 md:text-5xl"
+      >
+        <p className="leading-[1.1]">
+          Exhibition <span className="md:block">this way</span>
+        </p>
+        <span className="inline-block shrink-0 rotate-90 md:mt-[0.35em] md:rotate-0">
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 12h17M14 6l6 6-6 6" />
+          </svg>
+        </span>
+      </div>
 
       {/* terminal docked half off-screen */}
       <div className="absolute bottom-0 left-1/2 z-30 w-[92%] max-w-xl -translate-x-1/2 translate-y-1/2">
