@@ -3,7 +3,7 @@ import Image from 'next/image';
 // the resume overlay is the download link itself — a native <a download>, so it works even without JS
 export default function Closing() {
   return (
-    <div className="flex min-h-[100svh] w-full flex-col items-center justify-center px-[7vw] py-20 text-center">
+    <div className="relative z-30 flex min-h-[100svh] w-full flex-col items-center justify-center px-[7vw] py-20 text-center">
       <h2
         data-reveal
         className="font-display text-5xl font-extrabold leading-[1.05] tracking-wordmark sm:text-6xl md:text-7xl"
@@ -27,10 +27,10 @@ export default function Closing() {
           href="/resume.pdf"
           download
           aria-label="Download resume (PDF)"
-          className="group absolute left-[50.5%] top-[38%] flex h-[44%] w-[34%] -rotate-[4deg] flex-col justify-between rounded-sm bg-paper p-[3.5%] text-left shadow-lg ring-1 ring-ink/15 transition-transform duration-300 hover:-translate-y-1 hover:rotate-0"
+          className="group absolute left-[50.5%] top-[38%] flex h-[42%] w-[34%] rotate-[6deg] flex-col justify-between p-[3.5%] text-left"
         >
-          <div>
-            <div className="h-[0.45rem] w-3/5 rounded bg-ink/80" />
+          <div className="mt-5">
+            <span className="h-[0.45rem] font-semibold">My Resume</span>
             <div className="mt-[6%] h-[0.35rem] w-2/5 rounded bg-accent-blue" />
             <div className="mt-[10%] space-y-[6%]">
               <div className="h-[0.3rem] w-full rounded bg-ink/15" />
@@ -38,7 +38,7 @@ export default function Closing() {
               <div className="h-[0.3rem] w-4/5 rounded bg-ink/15" />
             </div>
           </div>
-          <div className="flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-ink px-1.5 py-[5%] font-body text-[0.6rem] font-semibold text-paper transition-colors duration-300 group-hover:bg-accent-blue sm:text-xs">
+          <div className="flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-ink px-1.8 py-[4%] font-body text-[0.5rem] font-semibold text-paper transition-colors duration-300 group-hover:bg-accent-blue sm:text-xs">
             <svg
               width="12"
               height="12"
@@ -54,7 +54,7 @@ export default function Closing() {
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" />
             </svg>
             <span className="sm:hidden">Resume</span>
-            <span className="hidden sm:inline">Download resume</span>
+            <span className="hidden sm:inline">Download</span>
           </div>
         </a>
       </div>
