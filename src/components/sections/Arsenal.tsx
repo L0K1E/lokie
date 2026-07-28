@@ -16,7 +16,7 @@ const accentDot = ['bg-accent-yellow', 'bg-accent-blue', 'bg-accent-green', 'bg-
 
 export default function Arsenal() {
   return (
-    <div className="flex min-h-[100svh] w-full flex-col justify-center px-[7vw] py-24">
+    <div className="relative z-30 flex min-h-[100svh] w-full flex-col justify-center px-[7vw] py-24">
       <h2
         data-reveal
         className="mb-12 font-display text-7xl font-extrabold tracking-wordmark md:text-8xl"

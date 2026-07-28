@@ -31,6 +31,8 @@ export default function HorizontalScroll() {
       const track = trackRef.current;
       if (!track) return;
       const W = () => window.innerWidth;
+      const paperLayer = track.querySelector<HTMLElement>('.paper-layer');
+      const scrollHint = document.querySelector<HTMLElement>('#hero [data-scroll-hint]');
 
       const originTitle = gsap.utils.toArray<HTMLElement>('#origin [data-reveal]');
       const originWords = gsap.utils.toArray<HTMLElement>('#origin [data-word]');
@@ -59,6 +61,18 @@ export default function HorizontalScroll() {
       tl.to(track, { x: () => -2 * W(), duration: PAN }, originEnd);
       tl.to(track, { x: () => -3 * W(), duration: PAN }, arsenalEnd);
       tl.to(track, { x: () => -4 * W(), duration: PAN }, worksEnd);
+
+      // mirrors the pans so the paper stays put while the camera moves across it
+      if (paperLayer) {
+        tl.to(paperLayer, { x: () => W(), duration: PAN }, 0);
+        tl.to(paperLayer, { x: () => 2 * W(), duration: PAN }, originEnd);
+        tl.to(paperLayer, { x: () => 3 * W(), duration: PAN }, arsenalEnd);
+        tl.to(paperLayer, { x: () => 4 * W(), duration: PAN }, worksEnd);
+      }
+
+      if (scrollHint) {
+        tl.to(scrollHint, { opacity: 0, duration: PAN * 0.5 }, 0);
+      }
 
       // reveals are slotted into each section's dwell, while the track is held
       if (originTitle.length) {
@@ -177,6 +191,28 @@ export default function HorizontalScroll() {
           }
         );
       }
+
+      const scrollHint = document.querySelector<HTMLElement>('#hero [data-scroll-hint]');
+      if (scrollHint) {
+        gsap.to(scrollHint, {
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 70%', scrub: true },
+        });
+      }
+    });
+
+    // the arrow nudge is the one motion shared by both layouts
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      const arrow = document.querySelector<HTMLElement>('#hero [data-scroll-hint] svg');
+      if (!arrow) return;
+      gsap.to(arrow, {
+        x: 10,
+        duration: 1.1,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
     });
 
     return () => mm.revert();
@@ -185,6 +221,7 @@ export default function HorizontalScroll() {
   return (
     <main ref={rootRef} className="hscroll">
       <div ref={trackRef} className="hscroll-track">
+        <div className="paper-layer" aria-hidden="true" />
         <section id="hero" className="hscroll-panel relative overflow-hidden bg-background-hero">
           <Hero />
         </section>
