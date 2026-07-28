@@ -72,6 +72,8 @@ export default function HorizontalScroll() {
 
       if (scrollHint) {
         tl.to(scrollHint, { opacity: 0, duration: PAN * 0.5 }, 0);
+        const arrow = scrollHint.querySelector('svg');
+        if (arrow) gsap.to(arrow, { x: 10, duration: 1.1, repeat: -1, yoyo: true, ease: 'sine.inOut' });
       }
 
       // reveals are slotted into each section's dwell, while the track is held
@@ -125,14 +127,17 @@ export default function HorizontalScroll() {
         invalidateOnRefresh: true,
       });
 
-      // terminal ls-name -> card jump: track shift maps to timeline time, plus the dwell of every section passed
+      // terminal ls-name -> card jump: land on the card's panel fully parked and revealed, not
+      // just camera-centered on the card -- a card left of its panel's centre (like the first
+      // works card) would otherwise land mid-reveal, still at opacity 0
       const jumpToCard = (card: HTMLElement) => {
         const trackRect = track.getBoundingClientRect();
         const cardRect = card.getBoundingClientRect();
         const cardCentre = cardRect.left - trackRect.left + cardRect.width / 2;
         const shift = (cardCentre - window.innerWidth / 2) / window.innerWidth;
-        let time = shift;
-        for (let k = 1; k <= 4; k++) if (shift > k) time += DWELL_AT[k];
+        const panel = Math.round(shift);
+        let time = panel;
+        for (let k = 1; k <= panel; k++) time += DWELL_AT[k];
         const progress = gsap.utils.clamp(0, 1, time / tl.duration());
         gsap.to(window, {
           duration: 1,
@@ -192,27 +197,6 @@ export default function HorizontalScroll() {
         );
       }
 
-      const scrollHint = document.querySelector<HTMLElement>('#hero [data-scroll-hint]');
-      if (scrollHint) {
-        gsap.to(scrollHint, {
-          opacity: 0,
-          ease: 'none',
-          scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 70%', scrub: true },
-        });
-      }
-    });
-
-    // the arrow nudge is the one motion shared by both layouts
-    mm.add('(prefers-reduced-motion: no-preference)', () => {
-      const arrow = document.querySelector<HTMLElement>('#hero [data-scroll-hint] svg');
-      if (!arrow) return;
-      gsap.to(arrow, {
-        x: 10,
-        duration: 1.1,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
     });
 
     return () => mm.revert();

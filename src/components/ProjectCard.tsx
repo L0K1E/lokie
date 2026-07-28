@@ -17,7 +17,7 @@ export default function ProjectCard({
   return (
     <article
       id={id}
-      className="group flex h-full flex-col overflow-hidden rounded-xl bg-ink shadow-lg ring-1 ring-ink/10 transition-shadow duration-300 hover:shadow-2xl"
+      className="group scroll-mt-20 flex h-full flex-col overflow-hidden rounded-xl bg-ink shadow-lg ring-1 ring-ink/10 transition-shadow duration-300 hover:shadow-2xl"
     >
       <div className="flex items-center gap-2 bg-white/[0.06] px-4 py-3">
         <span className="h-3 w-3 rounded-full bg-accent-orange" />
