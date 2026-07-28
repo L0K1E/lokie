@@ -27,16 +27,17 @@ export default function Hero() {
         className="absolute bottom-[26vh] left-1/2 z-10 h-[38vh] w-auto -translate-x-1/2 md:bottom-[24vh] md:h-[52vh]"
       />
 
-      {/* not a control, just an affordance for the sideways scroll */}
+      {/* not a control, just an affordance for the sideways scroll -- desktop only, the
+          mobile stack scrolls vertically so "this way" has nothing to point at */}
       <div
         data-scroll-hint
         aria-hidden="true"
-        className="absolute left-[7vw] top-[27%] z-20 flex items-center gap-3 font-body text-lg text-ink/70 md:left-auto md:right-[5vw] md:top-auto md:bottom-[12%] md:items-start md:gap-6 md:text-5xl"
+        className="absolute right-[5vw] top-auto z-20 hidden items-start gap-6 font-body text-5xl text-ink/70 md:bottom-[12%] md:flex"
       >
         <p className="leading-[1.1]">
-          Exhibition <span className="md:block">this way</span>
+          Exhibition <span className="block">this way</span>
         </p>
-        <span className="inline-block shrink-0 rotate-90 md:mt-[0.35em] md:rotate-0">
+        <span className="mt-[0.35em] inline-block shrink-0">
           <svg
             width="1em"
             height="1em"
